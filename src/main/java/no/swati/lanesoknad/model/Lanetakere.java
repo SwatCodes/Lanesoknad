@@ -1,12 +1,18 @@
 package no.swati.lanesoknad.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Entity
 public class Lanetakere {
     @Id
+    @GeneratedValue
+    private long lanetakereId;
+
+    @NotEmpty(message = "Fnr should not be empty")
     private String fnr;
     private String navn;
 

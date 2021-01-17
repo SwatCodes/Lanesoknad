@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LanetakereRepository extends CrudRepository<Lanetakere, String> {
+public interface LanetakereRepository extends CrudRepository<Lanetakere, Long> {
 }

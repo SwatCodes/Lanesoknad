@@ -1,10 +1,13 @@
 package no.swati.lanesoknad.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 public class Soknad {
@@ -13,28 +16,36 @@ public class Soknad {
     private long id;
 
     @OneToMany(cascade = {CascadeType.ALL})
-    private List<Lanetakere> lanetakere = new ArrayList<>();
+    @Valid
+    private List<Lanetakere> lanetakere;
 
-    private Long laneBelop;
+    @NotNull
+    @Positive(message = "Lanebelop can not be negative")
+    private Long lanebelop;
 
     private String behov;
 
-    private String lopeTid;
+    @NotNull
+    @Positive(message = "Lopetid can not be negative")
+    private Long lopetid;
 
-    private Integer avdragsFriPeriode;
+    @NotNull
+    @Positive(message = "AvdragsfriPeriode can not be negative")
+    private Integer avdragsfriPeriode;
 
-    private String loanType;
+    @NotEmpty(message = "Type should not be empty")
+    private String type;
 
     public Soknad() {
     }
 
-    public Soknad(List<Lanetakere> lanetakere, Long laneBelop, String behov, String lopeTid, Integer avdragsFriPeriode, String loanType ){
+    public Soknad(List<Lanetakere> lanetakere, Long lanebelop, String behov, Long lopetid, Integer avdragsfriPeriode, String type){
         this.lanetakere = lanetakere;
         this.behov = behov;
-        this.lopeTid = lopeTid;
-        this.avdragsFriPeriode = avdragsFriPeriode;
-        this.loanType = loanType;
-        this.laneBelop = laneBelop;
+        this.lopetid = lopetid;
+        this.avdragsfriPeriode = avdragsfriPeriode;
+        this.type = type;
+        this.lanebelop = lanebelop;
     }
 
     public long getId() {
@@ -53,12 +64,12 @@ public class Soknad {
         this.lanetakere = lanetakere;
     }
 
-    public Long getLaneBelop() {
-        return laneBelop;
+    public Long getLanebelop() {
+        return lanebelop;
     }
 
-    public void setLaneBelop(Long laneBelop) {
-        this.laneBelop = laneBelop;
+    public void setLanebelop(Long lanebelop) {
+        this.lanebelop = lanebelop;
     }
 
     public String getBehov() {
@@ -69,40 +80,27 @@ public class Soknad {
         this.behov = behov;
     }
 
-    public String getLopeTid() {
-        return lopeTid;
+    public Long getLopetid() {
+        return lopetid;
     }
 
-    public void setLopeTid(String lopeTid) {
-        this.lopeTid = lopeTid;
+    public void setLopetid(Long lopetid) {
+        this.lopetid = lopetid;
     }
 
-    public Integer getAvdragsFriPeriode() {
-        return avdragsFriPeriode;
+    public Integer getAvdragsfriPeriode() {
+        return avdragsfriPeriode;
     }
 
-    public void setAvdragsFriPeriode(Integer avdragsFriPeriode) {
-        this.avdragsFriPeriode = avdragsFriPeriode;
+    public void setAvdragsfriPeriode(Integer avdragsfriPeriode) {
+        this.avdragsfriPeriode = avdragsfriPeriode;
     }
 
-    public String getLoanType() {
-        return loanType;
+    public String getType() {
+        return type;
     }
 
-    public void setLoanType(String loanType) {
-        this.loanType = loanType;
-    }
-
-    @Override
-    public String toString() {
-        return "Soknad{" +
-                "id=" + id +
-                ", lanetakere=" + lanetakere +
-                ", laneBelop=" + laneBelop +
-                ", behov='" + behov + '\'' +
-                ", lopeTid='" + lopeTid + '\'' +
-                ", avdragsFriPeriode=" + avdragsFriPeriode +
-                ", loanType='" + loanType + '\'' +
-                '}';
+    public void setType(String type) {
+        this.type = type;
     }
 }

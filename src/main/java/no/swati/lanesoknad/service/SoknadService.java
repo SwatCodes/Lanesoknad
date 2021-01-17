@@ -13,8 +13,8 @@ public class SoknadService {
     @Autowired
     private SoknadRepository soknadRepository;
 
-    public Soknad getSoknad(Long id) {
-        return soknadRepository.findById(id).orElseGet(Soknad::new);
+    public String getSoknad(Long id) {
+        return soknadRepository.findById(id).isPresent() ? "Mottatt" : "Ukjent";
     }
 
     public Long addSoknad(Soknad soknad) {
