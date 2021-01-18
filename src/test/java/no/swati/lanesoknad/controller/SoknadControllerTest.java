@@ -43,7 +43,7 @@ class SoknadControllerTest {
     @Test
     public void addSoknad_returns_soknadId() throws Exception {
         when(soknadService.addSoknad(any(Soknad.class))).thenReturn(1L);
-        mvc.perform(post("/soknad")
+        mvc.perform(post("/soknad/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"lanetakere\": [{ \"fnr\" : \"12345\", \"navn\" : \"Kari Nordmann\" } , { \"fnr\" : \"01056000301\", \"navn\" : \"Ola Nordmann\" }], \"lanebelop\": 2450000,\n" +
                         "  \"behov\": \"Vi skal låne penger til........\",\n" +
