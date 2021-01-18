@@ -10,7 +10,7 @@
  
  ```
  POST /soknad
-Location http://localhost:8080/soknad
+Location http://localhost:8080/soknad/
  Accept: application/json
  Content-Type: application/json
  
